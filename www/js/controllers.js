@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('topThat.controllers', [])
 
 .controller('DashCtrl', function($scope) {})
 
@@ -26,3 +26,13 @@ angular.module('starter.controllers', [])
     enableFriends: true
   };
 });
+
+
+// .controller('indexCtrl', function($scope) {
+//     $scope.master = {email: "email@gmail.com", password: "bazooka"};
+
+//     $scope.reset = function() {
+//         $scope.user = angular.copy($scope.master);
+//     };
+//     $scope.reset();
+// });
