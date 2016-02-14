@@ -47,4 +47,10 @@ angular.module('topThat.services', [])
       return null;
     }
   };
-});
+})
+
+
+
+.factory('Users', function($resource) {
+  return $resource("http://localhost:3000/users.json");
+})

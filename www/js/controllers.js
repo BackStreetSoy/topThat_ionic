@@ -25,7 +25,7 @@ angular.module('topThat.controllers', [])
   $scope.settings = {
     enableFriends: true
   };
-});
+})
 
 
 // .controller('indexCtrl', function($scope) {
@@ -36,3 +36,12 @@ angular.module('topThat.controllers', [])
 //     };
 //     $scope.reset();
 // });
+
+.controller('UserCtrl', function($scope, Users){
+  console.log("ding")
+  Users.query().$promise.then(function(response){
+    $scope.user = response 
+  })
+
+
+})

@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('topThat', ['ionic', 'topThat.controllers', 'topThat.services'])
+angular.module('topThat', ['ionic', 'topThat.controllers', 'topThat.services', 'ngResource'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -75,6 +75,16 @@ angular.module('topThat', ['ionic', 'topThat.controllers', 'topThat.services'])
       'tab-account': {
         templateUrl: 'templates/tab-account.html',
         controller: 'AccountCtrl'
+      }
+    }
+  })
+
+  .state('users', {
+    url: '/users',
+    views: {
+      'all_users': {
+        templateUrl: 'templates/all_users.html',
+        contoller: 'UserCtrl'
       }
     }
   });
