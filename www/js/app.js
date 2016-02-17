@@ -31,6 +31,7 @@ angular.module('topThat', ['ionic', 'topThat.controllers', 'topThat.services', '
   // Each state's controller can be found in controllers.js
   $stateProvider
 
+
   // setup an abstract state for the tabs directive
     .state('tab', {
     url: '/tab',
@@ -39,6 +40,7 @@ angular.module('topThat', ['ionic', 'topThat.controllers', 'topThat.services', '
   })
 
   // Each tab has its own nav history stack:
+
 
   .state('tab.dash', {
     url: '/dash',
@@ -59,7 +61,8 @@ angular.module('topThat', ['ionic', 'topThat.controllers', 'topThat.services', '
         }
       }
     })
-    .state('tab.chat-detail', {
+
+  .state('tab.chat-detail', {
       url: '/chats/:chatId',
       views: {
         'tab-chats': {
@@ -77,17 +80,17 @@ angular.module('topThat', ['ionic', 'topThat.controllers', 'topThat.services', '
         controller: 'AccountCtrl'
       }
     }
-  })
+  });
 
-  .state('users', {
+  $stateProvider.state('users', {
     url: '/users',
     views: {
-      'all_users': {
-        templateUrl: 'templates/all_users.html',
+      'users': {
+        templateUrl: 'templates/tab-users.html',
         contoller: 'UserCtrl'
       }
     }
-  });
+  })
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/dash');
