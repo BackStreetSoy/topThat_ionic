@@ -50,7 +50,6 @@ angular.module('topThat.services', [])
 })
 
 
-
 .factory('Users', function($resource) {
   return $resource("http://localhost:3000/users.json");
 })

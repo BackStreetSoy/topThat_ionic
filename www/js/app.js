@@ -31,7 +31,6 @@ angular.module('topThat', ['ionic', 'topThat.controllers', 'topThat.services', '
   // Each state's controller can be found in controllers.js
   $stateProvider
 
-
     .state('users', {
       url: '/users',
       templateUrl: 'templates/users.html',
@@ -43,12 +42,7 @@ angular.module('topThat', ['ionic', 'topThat.controllers', 'topThat.services', '
       templateUrl: "templates/login.html",
       controller: 'LoginCtrl'
     })
-
-  // if none of the above states are matched, use this as the fallback
+ // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/users');
 
 });
-
-
-
-

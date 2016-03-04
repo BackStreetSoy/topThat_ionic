@@ -4,13 +4,17 @@
 
 <div class="login_form">
   <form>
-    email:  <input class="form-control" type="email" ng-model="email"/></br>
-    password: <input class="form-control" type="password" ng-model="password"/></br>
+    email:  <input class="form-control" type="text" ng-model="user.email"/></br>
+    password: <input class="form-control" type="text" ng-model="user.password"/></br>
 
     <input type="submit" ng-click="loginSubmit()" value="submit" class ="btn btn-primary">
   </form>
 
 </div>
+
+
+<p>You entered: {{user}}</p>
+
 
 
   </ion-content>

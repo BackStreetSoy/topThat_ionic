@@ -7,14 +7,15 @@ angular.module('topThat.controllers', [])
 
 })
 
-.controller("LoginCtrl", function($scope){
-  // $scope.email = ""
-  // $scope.password = ""
+.controller("LoginCtrl", function($scope, $http){
+    $scope.user = {}
 
  $scope.loginSubmit = function(){
-    console.log($scope.email) 
-    console.log($scope.password)
-    console.log("bing");
+    console.log($scope.user) 
+    console.log("bing")
+    $http.post("http://localhost:3000/sessions", $scope.user).then(function(response){
+        console.log(response)
+    });
 
   }
 
