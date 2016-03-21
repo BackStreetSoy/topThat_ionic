@@ -42,7 +42,14 @@ angular.module('topThat', ['ionic', 'topThat.controllers', 'topThat.services', '
       templateUrl: "templates/login.html",
       controller: 'LoginCtrl'
     })
+
+
+    .state('profile', {
+      url: '/profile',
+      templateUrl: "templates/profile.html",
+      controller: 'ProfileCtrl'
+    })
  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/users');
+  // $urlRouterProvider.otherwise('/users');
 
 });
