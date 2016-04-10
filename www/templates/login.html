@@ -3,11 +3,21 @@
   <p>welcome to TopThat. Please Log in</p>
 
 <div class="login_form">
-  <form>
+  <form ng-show="showLoginForm">
     email:  <input class="form-control" type="text" ng-model="user.email"/></br>
     password: <input class="form-control" type="text" ng-model="user.password"/></br>
 
     <input type="submit" ng-click="loginSubmit()" value="submit" class ="btn btn-primary">
+    <button type="button" ng-click="toggleAuthenticationForm()" class ="btn btn-primary">Sign Up</button>
+  </form>
+  <form ng-show="!showLoginForm">
+    username: <input class="form-control" type="text" ng-model="user.username"/></br>
+    email:  <input class="form-control" type="text" ng-model="user.email"/></br>
+    password: <input class="form-control" type="text" ng-model="user.password"/></br>
+<!--     password confirmation: <input class="form-control" type="text" ng-model="user.password"/></br>
+ -->
+    <input type="submit" ng-click="signUp()" value="Sign Up" class ="btn btn-primary">
+    <button type="button" ng-click="toggleAuthenticationForm()" class ="btn btn-primary">Login</button>
   </form>
 
 </div>

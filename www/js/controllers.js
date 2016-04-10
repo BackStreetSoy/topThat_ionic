@@ -10,6 +10,16 @@ angular.module('topThat.controllers', [])
 
 .controller("LoginCtrl", function($scope, $http, $location){
     $scope.user = {}
+    $scope.showLoginForm = true
+
+    $scope.toggleAuthenticationForm = function(){
+      console.log("inside toggle function");
+      if($scope.showLoginForm){
+        $scope.showLoginForm = false
+      }else{
+        $scope.showLoginForm = true
+      }
+    }
 
  $scope.loginSubmit = function(){
     console.log($scope.user) 
@@ -22,6 +32,17 @@ angular.module('topThat.controllers', [])
     }).catch(function(error){ 
       console.log(error)
     });
+
+  }
+
+  $scope.signUp = function(){
+    console.log("Inside Sign Up function");
+    console.log($scope.user);
+    $http.post("http://localhost:3000/users", $scope.user).then(function(response){
+      console.log(response)
+    }).catch(function(error){
+      console.log(error)
+    })
 
   }
 
