@@ -1,4 +1,4 @@
-angular.module('starter.services', [])
+angular.module('topThat.services', [])
 
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
@@ -47,4 +47,9 @@ angular.module('starter.services', [])
       return null;
     }
   };
-});
+})
+
+
+.factory('Users', function($resource) {
+  return $resource("http://localhost:3000/users.json");
+})
