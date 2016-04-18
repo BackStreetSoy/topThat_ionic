@@ -39,7 +39,9 @@ angular.module('topThat.controllers', [])
     console.log("Inside Sign Up function");
     console.log($scope.user);
     $http.post("http://localhost:3000/users", $scope.user).then(function(response){
-      console.log(response)
+      console.log(response.data)
+      window.localStorage['id'] = response.data.id
+      $location.path("/profile/");
     }).catch(function(error){
       console.log(error)
     })
