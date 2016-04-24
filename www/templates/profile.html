@@ -2,7 +2,28 @@
 <ion-view view-title="Profile">
   <ion-content>
     <div>
-        <h1>Per Jordan's Request: Hello World</h1>
+
+        <div ng-show ="!showEditForm">
+            <h1>{{user.username}}</h1>
+            <img src={{user.avatar}}></img>
+            <p>{{user.about_me}}</p>
+
+            <button ng-click="renderEdit()">edit</button>
+        </div>
+
+        <div ng-show="showEditForm">
+            <form>
+             username: <input class="form-control" type="text" ng-model="user.username"/></br>
+             email:  <input class="form-control" type="text" ng-model="user.email"/></br>
+
+             <div >
+             password: <input class="form-control" type="text" ng-model="user.password"/></br>
+             </div>
+
+            <input type="submit" ng-click="updateUser()" value="update" class ="btn btn-primary">
+                <button type="button" ng-click="hideEditForm()" class ="btn btn-primary">back</button>
+            </form>
+        </div>
     </div>
   </ion-content>
 </ion-view>

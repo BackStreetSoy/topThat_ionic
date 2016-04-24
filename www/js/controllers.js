@@ -27,7 +27,7 @@ angular.module('topThat.controllers', [])
     $http.post("http://localhost:3000/sessions", $scope.user).then(function(response){
         console.log(response.data)
         window.localStorage['id'] = response.data.id
-        $location.path("/profile/");
+        $location.path("/profile");
 
     }).catch(function(error){ 
       console.log(error)
@@ -41,7 +41,7 @@ angular.module('topThat.controllers', [])
     $http.post("http://localhost:3000/users", $scope.user).then(function(response){
       console.log(response.data)
       window.localStorage['id'] = response.data.id
-      $location.path("/profile/");
+      $location.path("/profile");
     }).catch(function(error){
       console.log(error)
     })
@@ -52,5 +52,38 @@ angular.module('topThat.controllers', [])
 
 .controller("ProfileCtrl", function($scope, $http, $location){
     $scope.user = {}
+
+
+    $scope.renderEdit = function(){
+      $scope.showEditForm = true;
+    }
+
+    $scope.updateUser = function(){
+      console.log($scope.user)
+
+      $http.put("http://localhost:3000/users/" + window.localStorage['id'], $scope.user).then(function(response){
+          console.log(response);
+          $scope.user = response.data;
+          $scope.showEditForm = false;
+
+      })
+    }
+
+    var initialize = function(){
+      console.log("initializing")
+      $http.get("http://localhost:3000/users/" + window.localStorage['id']).then(function(response){
+
+        console.log(response);
+        $scope.user = response.data;
+
+
+      }).catch(function(error){
+        console.log(error)
+
+      })
+    };
+    
+
+    initialize();
 
 })
