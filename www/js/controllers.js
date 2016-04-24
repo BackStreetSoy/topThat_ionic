@@ -64,7 +64,8 @@ angular.module('topThat.controllers', [])
       $http.put("http://localhost:3000/users/" + window.localStorage['id'], $scope.user).then(function(response){
           console.log(response);
           $scope.user = response.data;
-          $location.path("/profile");
+          $scope.showEditForm = false;
+
       })
     }
 
