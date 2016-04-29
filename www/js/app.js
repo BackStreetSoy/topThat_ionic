@@ -5,7 +5,10 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
+
+// angular.module should be 1st version below, but will be 404 during development
 angular.module('topThat', ['ionic', 'ngCordova', 'topThat.controllers', 'topThat.services', 'ngResource'])
+// angular.module('topThat', ['ionic', 'topThat.controllers', 'topThat.services', 'ngResource'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

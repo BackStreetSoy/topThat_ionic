@@ -3,7 +3,7 @@ angular.module('topThat.controllers', [])
 .controller('UserCtrl', function($scope, Users){
   Users.query().$promise.then(function(response){
     console.log(response)
-    $scope.users = response 
+    $scope.users = response
   })
 
 })
@@ -22,14 +22,14 @@ angular.module('topThat.controllers', [])
     }
 
  $scope.loginSubmit = function(){
-    console.log($scope.user) 
+    console.log($scope.user)
     console.log("bing")
     $http.post("http://localhost:3000/sessions", $scope.user).then(function(response){
         console.log(response.data)
         window.localStorage['id'] = response.data.id
         $location.path("/profile");
 
-    }).catch(function(error){ 
+    }).catch(function(error){
       console.log(error)
     });
 
@@ -53,7 +53,6 @@ angular.module('topThat.controllers', [])
 .controller("ProfileCtrl", function($scope, $http, $location){
     $scope.user = {}
 
-
     $scope.renderEdit = function(){
       $scope.showEditForm = true;
     }
@@ -76,14 +75,25 @@ angular.module('topThat.controllers', [])
         console.log(response);
         $scope.user = response.data;
 
-
       }).catch(function(error){
         console.log(error)
 
       })
     };
-    
 
     initialize();
 
 })
+
+.controller("AvatarCtrl", function($scope, $cordovaFileTransfer){
+  $scope.upload = function() {
+    var options = {
+      fileKey: "avatar",
+      fileName: "image.png",
+      chunkedMode: false,
+      mimeType: "image/png"
+    };
+
+    $cordovaFileTransfer.upload()
+  }
+});
