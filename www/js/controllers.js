@@ -94,6 +94,16 @@ angular.module('topThat.controllers', [])
       mimeType: "image/png"
     };
 
-    $cordovaFileTransfer.upload()
+    // example
+    // 1st .upload param is the remote server/endpoint
+    // 2nd .upload param is where the file is coming from
+    // May need different functions for different devices
+    $cordovaFileTransfer.upload("http://192.168.56.1:1337/file/upload", "/android_asset/www/img/ionic.png", options).then(function(result) {
+            console.log("SUCCESS: " + JSON.stringify(result.response));
+        }, function(err) {
+            console.log("ERROR: " + JSON.stringify(err));
+        }, function (progress) {
+            // constant progress updates
+        });
   }
 });

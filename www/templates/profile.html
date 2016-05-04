@@ -13,16 +13,29 @@
 
         <div ng-show="showEditForm">
             <form>
-             username: <input class="form-control" type="text" ng-model="user.username"/></br>
-             email:  <input class="form-control" type="text" ng-model="user.email"/></br>
+              username: <input class="form-control" type="text" ng-model="user.username"/></br>
+              email:  <input class="form-control" type="text" ng-model="user.email"/></br>
 
-             <div >
-             password: <input class="form-control" type="text" ng-model="user.password"/></br>
-             </div>
+            <div >
+              password: <input class="form-control" type="text" ng-model="user.password"/></br>
+            </div>
+
+            <div>
+              <ion-content ng-controller="AvatarCtrl">
+                <button class="button" ng-click="upload()">upload your avatar</button>
+              </ion-content>
+            </div>
 
             <input type="submit" ng-click="updateUser()" value="update" class ="btn btn-primary">
-                <button type="button" ng-click="hideEditForm()" class ="btn btn-primary">back</button>
+              <button type="button" ng-click="hideEditForm()" class ="btn btn-primary">back</button>
             </form>
+
+            <br><br>
+            <ion-scroll direction="x">
+              <img ng-repeat="image in images" ng-src="{{urlForImage(image)}}"/>
+            </ion-scroll>
+
+
         </div>
     </div>
   </ion-content>
