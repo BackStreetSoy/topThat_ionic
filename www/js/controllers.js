@@ -53,6 +53,26 @@ angular.module('topThat.controllers', [])
 .controller("ProfileCtrl", function($scope, $http, $location){
     $scope.user = {}
 
+    // Show default avatar
+    $scope.default_avatar = function(){
+      console.log("USER AVATAR OBJECT")
+      console.log($scope.user.avatar)
+      if(typeof $scope.user.avatar.url !== 'undefined'){
+        return false
+      }else{
+        return true
+      }
+    }
+    // Show user avatar
+    $scope.user_avatar = function(){
+      if(typeof $scope.user.avatar.url === 'undefined'){
+        return false
+      }else{
+        return true
+      }
+    }
+
+
     $scope.renderEdit = function(){
       $scope.showEditForm = true;
     }
