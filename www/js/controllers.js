@@ -105,25 +105,57 @@ angular.module('topThat.controllers', [])
 
 })
 
-.controller("AvatarCtrl", function($scope, $cordovaFileTransfer){
-  $scope.upload = function() {
-    var options = {
-      fileKey: "avatar",
-      fileName: "image.png",
-      chunkedMode: false,
-      mimeType: "image/png"
-    };
+.controller("AvatarCtrl", function($scope, $cordovaFileTransfer, $cordovaDevice, $cordovaFile, $ionicPlatform, $cordovaEmailComposer, $ionicActionSheet, ImageService, FileService){
 
-    // example
-    // 1st .upload param is the remote server/endpoint
-    // 2nd .upload param is where the file is coming from
-    // May need different functions for different devices
-    $cordovaFileTransfer.upload("http://192.168.56.1:1337/file/upload", "/android_asset/www/img/ionic.png", options).then(function(result) {
-            console.log("SUCCESS: " + JSON.stringify(result.response));
-        }, function(err) {
-            console.log("ERROR: " + JSON.stringify(err));
-        }, function (progress) {
-            // constant progress updates
-        });
+  $ionicPlatform.ready(function(){
+    $scope.images = FileService.images();
+    $scope.$apply();
+  });
+
+  $scope.urlForImage = function(imageName){
+    var trueOrigin = cordova.file.dataDirectory + imageName;
+    return trueOrigin;
+  }
+
+  $scope.upload = function(){
+    // FOR LOCAL FILE STORING
+    $scope.hideSheet = $ionicActionSheet.show({
+      buttons: [
+        { text: 'take photo' },
+        { text: 'photo from library' }
+      ],
+      titleText: 'add images',
+      cancelText: 'cancel',
+      buttonClicked: function(index){
+        $scope.addImage(index);
+      }
+    });
+
+    // FOR ONLINE UPLOAD
+    // var options = {
+    //   fileKey: "avatar",
+    //   fileName: "image.png",
+    //   chunkedMode: false,
+    //   mimeType: "image/png"
+    // };
+
+    // // example
+    // // 1st .upload param is the remote server/endpoint
+    // // 2nd .upload param is where the file is coming from
+    // // May need different functions for different devices
+    // $cordovaFileTransfer.upload("http://192.168.56.1:1337/file/upload", "/android_asset/www/img/ionic.png", options).then(function(result) {
+    //         console.log("SUCCESS: " + JSON.stringify(result.response));
+    //     }, function(err) {
+    //         console.log("ERROR: " + JSON.stringify(err));
+    //     }, function (progress) {
+    //         // constant progress updates
+    //     });
+  }
+
+  $scope.addImage = function(type) {
+    $scope.hideSheet();
+    ImageService.handleMediaDialog(type).then(function(){
+      $scope.$apply();
+    });
   }
 });
