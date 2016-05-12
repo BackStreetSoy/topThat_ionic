@@ -5,7 +5,22 @@
 
         <div ng-show ="!showEditForm">
             <h1>{{user.username}}</h1>
-            <img src={{user.avatar}}></img>
+
+            <!-- <input type="text" ng-model="{{user.avatar}}" ng-init="{{user.avatar}}= true"> -->
+            <div ng-controller="ProfileCtrl">
+
+              <!-- Show default avatar -->
+              <div ng-if="default_avatar()">
+                <img src="img/default_avatar.png"></img>
+              </div>
+
+              <!-- Show user's uploaded avatar -->
+              <div ng-if="user_avatar()">
+                <img src={{user.avatar.url}}></img>
+              </div>
+
+            </div>
+
             <p>{{user.about_me}}</p>
 
             <button ng-click="renderEdit()">edit</button>
@@ -13,16 +28,29 @@
 
         <div ng-show="showEditForm">
             <form>
-             username: <input class="form-control" type="text" ng-model="user.username"/></br>
-             email:  <input class="form-control" type="text" ng-model="user.email"/></br>
+              username: <input class="form-control" type="text" ng-model="user.username"/></br>
+              email:  <input class="form-control" type="text" ng-model="user.email"/></br>
 
-             <div >
-             password: <input class="form-control" type="text" ng-model="user.password"/></br>
-             </div>
+            <div >
+              password: <input class="form-control" type="text" ng-model="user.password"/></br>
+            </div>
+
+            <div>
+              <ion-content ng-controller="AvatarCtrl">
+                <button class="button button-positive" ng-click="upload()">upload your avatar</button>
+              </ion-content>
+            </div>
 
             <input type="submit" ng-click="updateUser()" value="update" class ="btn btn-primary">
-                <button type="button" ng-click="hideEditForm()" class ="btn btn-primary">back</button>
+              <button type="button" ng-click="hideEditForm()" class ="btn btn-primary">back</button>
             </form>
+
+            <br><br>
+            <ion-scroll direction="x">
+              <img ng-repeat="image in images" ng-src="{{urlForImage(image)}}"/>
+            </ion-scroll>
+
+
         </div>
     </div>
   </ion-content>
